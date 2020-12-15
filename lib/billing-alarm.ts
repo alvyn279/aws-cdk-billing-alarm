@@ -5,10 +5,11 @@ export interface BillingAlarmProps {
 }
 
 export class BillingAlarm extends cdk.Construct {
-
   constructor(scope: cdk.Construct, id: string, props: BillingAlarmProps = {}) {
     super(scope, id);
 
-    // Define construct contents here
+    if (props) {
+      // Define construct contents here
+    }
   }
 }

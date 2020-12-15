@@ -7,9 +7,9 @@ import * as AwsCdkBillingAlarm from '../lib/index';
  */
 test('SNS Topic Created', () => {
   const app = new cdk.App();
-  const stack = new cdk.Stack(app, "TestStack");
+  const stack = new cdk.Stack(app, 'TestStack');
   // WHEN
   new AwsCdkBillingAlarm.BillingAlarm(stack, 'MyTestConstruct');
   // THEN
-  expectCDK(stack).to(countResources("AWS::SNS::Topic",0));
+  expectCDK(stack).to(countResources('AWS::SNS::Topic', 0));
 });
