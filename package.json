@@ -1,0 +1,30 @@
+{
+  "name": "aws-cdk-billing-alarm",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alvyn279/aws-cdk-billing-alarm.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "devDependencies": {
+    "@aws-cdk/assert": "^1.78.0",
+    "@types/jest": "^26.0.10",
+    "@types/node": "10.17.27",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.2.0",
+    "typescript": "~3.9.7"
+  },
+  "peerDependencies": {
+    "@aws-cdk/core": "^1.78.0"
+  },
+  "dependencies": {
+    "@aws-cdk/core": "^1.78.0"
+  }
+}
