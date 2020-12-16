@@ -1,5 +1,8 @@
 *.ts
 !*.d.ts
+jest.config*
+.github
+test
 
 # CDK asset staging directory
 .cdk.staging
