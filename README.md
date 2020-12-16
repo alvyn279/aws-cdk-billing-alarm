@@ -5,8 +5,8 @@
 A CDK construct that sets up email notification for when you exceed a given AWS estimated charges amount.
 
 Create this construct in a billing stack **with only a few lines**. This construct is an implementation of the manual
-setup described on [AWS Estimated Charges Monitoring](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/gs_monitor_estimated_charges_with_cloudwatch.html#gs_creating_billing_alarm).
-Please read carefully and perform the entire setup process.
+setup described on [AWS Estimated Charges Monitoring](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/gs_monitor_estimated_charges_with_cloudwatch.html).
+Please read and perform the entire setup process carefully.
 
 ## Get Started
 
