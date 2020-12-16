@@ -38,7 +38,7 @@ export class CdkStack extends cdk.Stack {
     // if estimated charges exceed 50 USD
     new BillingAlarm(stack, 'AWSAccountBillingAlarm', {
       monthlyThreshold: 50,
-      email: 'admin@example.com',
+      emails: ['admin@example.com'],
     });
   }
 }
@@ -46,7 +46,7 @@ export class CdkStack extends cdk.Stack {
 
 ### Post-Deployment
 
-Confirm the subscription to the newly created topic for the email you specified as endpoint in `BillingAlarmProps`.
+Confirm the subscription to the newly created topic for the emails you specified as endpoints in `BillingAlarmProps`.
 You can do so by clicking on the `SubscribeURL` of the JSON email you received.
 > **Note**: If you did not receive the email, you can fire a **Request confirmation** for the subscription from the AWS SNS Console.
    

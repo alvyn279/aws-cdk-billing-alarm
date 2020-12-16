@@ -15,29 +15,35 @@ export interface BillingAlarmProps {
   readonly monthlyThreshold: number;
 
   /**
-   * The email to which the alarm-triggered notification will be sent.
+   * The emails to which the alarm-triggered notification will be sent.
    */
-  readonly email: string;
+  readonly emails: Array<string>;
 }
 
 /**
  * A CDK construct that sets up email notification for when you exceed a given AWS
  * estimated charges amount.
  *
- * Note: The email address used as SNS Topic endpoint must be manually confirmed
+ * Note: The email addresses used as SNS Topic endpoint must be manually confirmed
  * once the stack is deployed.
  */
 export class BillingAlarm extends cdk.Construct {
   constructor(scope: cdk.Construct, id: string, props: BillingAlarmProps) {
     super(scope, id);
 
+    if (props.emails.length === 0) {
+      throw new Error('Cannot supply an empty array of email subscriptions');
+    }
+
     const billingAlarmTopic: sns.ITopic = new sns.Topic(this, 'BillingAlarmNotificationTopic', {
       topicName: 'BillingAlarmNotificationTopic',
     });
 
-    billingAlarmTopic.addSubscription(new sub.EmailSubscription(props.email, {
-      json: true,
-    }));
+    props.emails.forEach((email: string) => {
+      billingAlarmTopic.addSubscription(new sub.EmailSubscription(email, {
+        json: true,
+      }));
+    });
 
     const billingAlarmMetric: cw.Metric = new cw.Metric({
       metricName: 'EstimatedCharges',
