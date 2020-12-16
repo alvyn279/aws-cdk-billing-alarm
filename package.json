@@ -34,6 +34,10 @@
     "@aws-cdk/core": "^1.78.0"
   },
   "dependencies": {
+    "@aws-cdk/aws-cloudwatch": "^1.78.0",
+    "@aws-cdk/aws-cloudwatch-actions": "^1.78.0",
+    "@aws-cdk/aws-sns": "^1.78.0",
+    "@aws-cdk/aws-sns-subscriptions": "^1.78.0",
     "@aws-cdk/core": "^1.78.0"
   }
 }
