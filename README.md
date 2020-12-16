@@ -1,4 +1,6 @@
 # aws-cdk-billing-alarm
+[![Build status](https://github.com/alvyn279/aws-cdk-billing-alarm/workflows/build/badge.svg)](https://github.com/alvyn279/aws-cdk-billing-alarm/actions/)
+
 A CDK construct that sets up email notification for when you exceed a given AWS estimated charges amount.
 
 Create this construct in a billing stack **with only a few lines**. This construct is an implementation of the manual
