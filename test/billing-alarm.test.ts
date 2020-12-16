@@ -12,7 +12,7 @@ test('BillingAlarm is created', () => {
   // WHEN
   new BillingAlarm(stack, 'MyBillingAlarmConstruct', {
     monthlyThreshold: 50,
-    email: 'admin@example.com',
+    emails: ['admin@example.com'],
   });
 
   // THEN
@@ -56,7 +56,7 @@ test('BillingAlarm is created with non-round threshold', () => {
   // WHEN
   new BillingAlarm(stack, 'MyBillingAlarmConstruct', {
     monthlyThreshold: 50.50,
-    email: 'admin@example.com',
+    emails: ['admin@example.com'],
   });
 
   // THEN
@@ -76,7 +76,7 @@ test('BillingAlarm construct holds a metric that has USD currency as dimension',
   // WHEN
   new BillingAlarm(stack, 'MyBillingAlarmConstruct', {
     monthlyThreshold: 50,
-    email: 'admin@example.com',
+    emails: ['admin@example.com'],
   });
 
   // THEN
@@ -88,4 +88,46 @@ test('BillingAlarm construct holds a metric that has USD currency as dimension',
       },
     ],
   }));
+});
+
+test('BillingAlarm construct supports multiple emails in topic subscriptions', () => {
+  // GIVEN
+  const app = new cdk.App();
+  const stack = new cdk.Stack(app, 'TestStack');
+
+  // WHEN
+  new BillingAlarm(stack, 'MyBillingAlarmConstruct', {
+    monthlyThreshold: 50,
+    emails: ['admin@example.com', 'admin2@example.com'],
+  });
+
+  expectCDK(stack).to(countResources('AWS::SNS::Subscription', 2));
+  expectCDK(stack).to(haveResource('AWS::SNS::Subscription', {
+    Protocol: 'email-json',
+    TopicArn: {
+      Ref: 'MyBillingAlarmConstructBillingAlarmNotificationTopicEFAE92EB',
+    },
+    Endpoint: 'admin@example.com',
+  }));
+  expectCDK(stack).to(haveResource('AWS::SNS::Subscription', {
+    Protocol: 'email-json',
+    TopicArn: {
+      Ref: 'MyBillingAlarmConstructBillingAlarmNotificationTopicEFAE92EB',
+    },
+    Endpoint: 'admin2@example.com',
+  }));
+});
+
+test('BillingAlarm throws error when no emails are supplied', () => {
+  // GIVEN
+  const app = new cdk.App();
+  const stack = new cdk.Stack(app, 'TestStack');
+
+  // WHEN
+  expect(() => {
+    new BillingAlarm(stack, 'MyBillingAlarmConstruct', {
+      monthlyThreshold: 50,
+      emails: [],
+    });
+  }).toThrow(/Cannot supply an empty array of email subscriptions/);
 });
