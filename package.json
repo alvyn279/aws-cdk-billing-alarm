@@ -1,16 +1,26 @@
 {
   "name": "aws-cdk-billing-alarm",
+  "author": "Alvyn Le",
   "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/alvyn279/aws-cdk-billing-alarm.git"
   },
   "license": "MIT",
+  "keywords": [
+    "aws",
+    "cdk",
+    "constructs",
+    "billing",
+    "alarm",
+    "billing-alarm",
+    "aws-cdk-billing-alarm"
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "lint": "eslint . --ext .js,.ts"
+    "lint": "eslint . --ext .ts"
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
