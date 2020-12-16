@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  lint_build_test:
+  build_lint_test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,11 +25,11 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Run linter
-        run: npm run lint
-
       - name: Build lib
         run: npm run build
+
+      - name: Run linter
+        run: npm run lint
 
       - name: Run unit tests
         run: npm test
