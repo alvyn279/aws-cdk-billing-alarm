@@ -67,3 +67,25 @@ test('BillingAlarm is created with non-round threshold', () => {
     Threshold: 50.5,
   }));
 });
+
+test('BillingAlarm construct holds a metric that has USD currency as dimension', () => {
+  // GIVEN
+  const app = new cdk.App();
+  const stack = new cdk.Stack(app, 'TestStack');
+
+  // WHEN
+  new BillingAlarm(stack, 'MyBillingAlarmConstruct', {
+    monthlyThreshold: 50,
+    email: 'admin@example.com',
+  });
+
+  // THEN
+  expectCDK(stack).to(haveResourceLike('AWS::CloudWatch::Alarm', {
+    Dimensions: [
+      {
+        Name: 'Currency',
+        Value: 'USD',
+      },
+    ],
+  }));
+});

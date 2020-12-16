@@ -43,6 +43,9 @@ export class BillingAlarm extends cdk.Construct {
       metricName: 'EstimatedCharges',
       namespace: 'AWS/Billing',
       statistic: 'Maximum',
+      dimensions: {
+        Currency: 'USD',
+      },
     }).with({
       // Evaluates the metric every 9 hours. This is needed because
       // `EstimatedCharges` metrics is updated every 6 hours
