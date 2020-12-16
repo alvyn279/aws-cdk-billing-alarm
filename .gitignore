@@ -9,3 +9,7 @@ cdk.out
 
 # IDEs
 .idea
+
+# jsii, handles generating tsconfig
+dist
+/tsconfig.json
