@@ -6,7 +6,7 @@ on:
       - "v*"
 
 jobs:
-  build:
+  build_and_publish: # publish to package managers
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
 
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           fetch-depth: 1
 
@@ -39,3 +39,33 @@ jobs:
         uses: udondan/jsii-publish@v0.12.0
         with:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+
+  release: # release versioned source code to GitHub
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Extract repo attributes
+        id: attrs
+        uses: ibnesayeed/repo-attrs@master
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            ## Changes in this release
+
+            Changes from `${{ steps.attrs.outputs.tail }}` to `${{ steps.attrs.outputs.head }}`
+
+            ### Pull requests
+
+            ${{ steps.attrs.outputs.prs }}
