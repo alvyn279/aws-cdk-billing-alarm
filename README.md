@@ -19,15 +19,19 @@ You must first enable billing alerts from the AWS Console as per [documentation]
 
 Billing alerts will allow your AWS account to start collecting billing metrics (`EstimatedCharges`) on a periodic 6-hour basis.
 
-### Installation and Usage
+### Installation
 
+#### [Node documentation](https://www.npmjs.com/package/aws-cdk-billing-alarm)
 ```shell
-# node
 npm install --save aws-cdk-billing-alarm
-# python
+```
+
+#### [Python documentation](https://pypi.org/project/aws-cdk-billing-alarm/)
+```shell
 pip install aws-cdk-billing-alarm
 ```
 
+### Usage
 ```typescript
 import * as cdk from '@aws-cdk/core';
 import { BillingAlarm } from 'aws-cdk-billing-alarm';
