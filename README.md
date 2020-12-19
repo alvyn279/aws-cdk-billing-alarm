@@ -42,7 +42,7 @@ export class CdkStack extends cdk.Stack {
 
     // Create an alarm that emails `admin@example.com`
     // if estimated charges exceed 50 USD
-    new BillingAlarm(stack, 'AWSAccountBillingAlarm', {
+    new BillingAlarm(this, 'AWSAccountBillingAlarm', {
       monthlyThreshold: 50,
       emails: ['admin@example.com'],
     });
