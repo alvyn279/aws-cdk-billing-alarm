@@ -2,6 +2,7 @@
 [![Build status](https://github.com/alvyn279/aws-cdk-billing-alarm/workflows/build/badge.svg)](https://github.com/alvyn279/aws-cdk-billing-alarm/actions/)
 [![NPM version](https://badge.fury.io/js/aws-cdk-billing-alarm.svg)](https://www.npmjs.com/package/aws-cdk-billing-alarm)
 [![PyPI version](https://badge.fury.io/py/aws-cdk-billing-alarm.svg)](https://pypi.org/project/aws-cdk-billing-alarm/)
+[![Mentioned in Awesome CDK](https://awesome.re/mentioned-badge.svg)](https://github.com/kolomied/awesome-cdk)
 
 A CDK construct that sets up email notification for when you exceed a given AWS estimated charges amount.
 
