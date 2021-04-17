@@ -44,7 +44,8 @@
     "jsii": "^1.16.0",
     "jsii-pacmak": "^1.16.0",
     "ts-jest": "^26.2.0",
-    "typescript": "~3.9.7"
+    "typescript": "~3.9.7",
+    "xmldom": ">=0.5.0"
   },
   "peerDependencies": {
     "@aws-cdk/core": "^1.78.0",
