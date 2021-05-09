@@ -25,6 +25,8 @@ jobs:
       - name: Install dependencies
         run: npm i
 
+      # We build our library first because JSII generates
+      # the tsconfig.json file, which is needed by eslint
       - name: Build lib
         run: npm run build
 
