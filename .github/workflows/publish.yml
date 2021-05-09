@@ -6,7 +6,8 @@ on:
       - "v*"
 
 jobs:
-  build_and_publish: # publish to package managers
+  # publish to package managers
+  build_and_publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -40,7 +41,9 @@ jobs:
         with:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
 
-  release: # release versioned source code to GitHub
+  # release versioned source code to GitHub
+  release:
+    needs: build_and_publish
     runs-on: ubuntu-latest
 
     steps:
