@@ -9,7 +9,9 @@ cdk.out
 
 # IDEs
 .idea
+.vscode
 
 # jsii, handles generating tsconfig
 dist
 /tsconfig.json
+tsconfig.tsbuildinfo
