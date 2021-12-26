@@ -38,19 +38,12 @@ export class BillingAlarm extends Construct {
       );
     }
 
-    const billingAlarmTopic: sns.ITopic = new sns.Topic(
-      this,
-      'BillingAlarmNotificationTopic',
-      {
-        topicName: 'BillingAlarmNotificationTopic',
-      },
-    );
+    const billingAlarmTopic: sns.ITopic = new sns.Topic(this, 'Topic');
 
     props.emails.forEach((email: string) => {
       billingAlarmTopic.addSubscription(
-        new sub.EmailSubscription(email, {
-          json: true,
-        }),
+        // TODO: support DLQ
+        new sub.EmailSubscription(email),
       );
     });
 
@@ -70,7 +63,7 @@ export class BillingAlarm extends Construct {
 
     const billingAlarm: cw.Alarm = new cw.Alarm(
       this,
-      'BillingCloudWatchAlarm',
+      'EstimatedChargesAlarm',
       {
         alarmDescription: 'Upper monthly billing cost limit',
         comparisonOperator:

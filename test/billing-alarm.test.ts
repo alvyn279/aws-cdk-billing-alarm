@@ -21,20 +21,14 @@ test('BillingAlarm is created', () => {
 
   // THEN
   expectCDK(stack).to(countResources('AWS::SNS::Topic', 1));
-  expectCDK(stack).to(
-
-    haveResource('AWS::SNS::Topic', {
-      TopicName: 'BillingAlarmNotificationTopic',
-    }),
-  );
 
   expectCDK(stack).to(countResources('AWS::SNS::Subscription', 1));
   expectCDK(stack).to(
     haveResource('AWS::SNS::Subscription', {
-      Protocol: 'email-json',
+      Protocol: 'email',
       TopicArn: {
         Ref:
-          'MyBillingAlarmConstructBillingAlarmNotificationTopicEFAE92EB',
+          'MyBillingAlarmConstructTopic654DA536',
       },
       Endpoint: 'admin@example.com',
     }),
@@ -48,7 +42,7 @@ test('BillingAlarm is created', () => {
       AlarmActions: [
         {
           Ref:
-            'MyBillingAlarmConstructBillingAlarmNotificationTopicEFAE92EB',
+            'MyBillingAlarmConstructTopic654DA536',
         },
       ],
       AlarmDescription: 'Upper monthly billing cost limit',
@@ -121,20 +115,20 @@ test('BillingAlarm construct supports multiple emails in topic subscriptions', (
   expectCDK(stack).to(countResources('AWS::SNS::Subscription', 2));
   expectCDK(stack).to(
     haveResource('AWS::SNS::Subscription', {
-      Protocol: 'email-json',
+      Protocol: 'email',
       TopicArn: {
         Ref:
-          'MyBillingAlarmConstructBillingAlarmNotificationTopicEFAE92EB',
+          'MyBillingAlarmConstructTopic654DA536',
       },
       Endpoint: 'admin@example.com',
     }),
   );
   expectCDK(stack).to(
     haveResource('AWS::SNS::Subscription', {
-      Protocol: 'email-json',
+      Protocol: 'email',
       TopicArn: {
         Ref:
-          'MyBillingAlarmConstructBillingAlarmNotificationTopicEFAE92EB',
+          'MyBillingAlarmConstructTopic654DA536',
       },
       Endpoint: 'admin2@example.com',
     }),
