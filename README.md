@@ -34,11 +34,12 @@ pip install aws-cdk-billing-alarm
 
 ### Usage
 ```typescript
-import * as cdk from '@aws-cdk/core';
+import { Stack, StackProps } from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 import { BillingAlarm } from 'aws-cdk-billing-alarm';
 
-export class CdkStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+class CdkStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     // Create an alarm that emails `admin@example.com`
